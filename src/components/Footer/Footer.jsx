@@ -96,7 +96,7 @@ No matter where you’re going, by bus or carpool, find the perfect ride from ou
             <div className="footer__bottom">
               <p className="section__description d-flex align-items-center justify-content-center gap-1 pt-4">
                 <i class="ri-copyright-line"></i>Copyright {year}, Developed by
-                Vivek ,Sagar, Nikita. All rights reserved.
+                Vivek ,Sagar. All rights reserved.
               </p>
             </div>
           </Col>
