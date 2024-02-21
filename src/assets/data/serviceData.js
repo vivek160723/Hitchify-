@@ -3,43 +3,26 @@ const serviceData = [
     id: 1,
     title: "City Transfer",
     icon: "ri-map-pin-2-line",
-    desc: "vivek tempor sadipscing vero lorem sea, invidunt sed et eos ipsum et erat. Dolor ut duo sadipscing lorem. Gubergren gub",
+    desc: " No matter where you’re going, by bus or carpool, find the perfect ride from our wide range of destinations and routes at low prices.",
   },
 
   {
     id: 2,
     title: "Whole  City Tour",
     icon: "ri-community-line",
-    desc: "sagar tempor sadipscing vero lorem sea, invidunt sed et eos ipsum et erat. Dolor ut duo sadipscing lorem. Gubergren gub",
+    desc: "We take the time to get to know each of our members and bus partners. We check reviews, profiles and IDs, so you know who you’re travelling with and can book your ride at ease on our secure platform.",
   },
 
   {
     id: 3,
-    title: "Unlimited Miles Car Rental",
+    title: "Unlimited Miles Car pooling",
     icon: "ri-roadster-line",
-    desc: "Tempor tempor sadipscing vero lorem sea, invidunt sed et eos ipsum et erat. Dolor ut duo sadipscing lorem. Gubergren gub",
+    desc: "Booking a ride has never been easier! Thanks to our simple app powered by great technology, you can book a ride close to you in just minutes.",
   },
 
-  {
-    id: 4,
-    title: "Fast & Easy Booking",
-    icon: "ri-timer-flash-line",
-    desc: "Tempor tempor sadipscing vero lorem sea, invidunt sed et eos ipsum et erat. Dolor ut duo sadipscing lorem. Gubergren gub",
-  },
+ 
 
-  {
-    id: 5,
-    title: "Many Pickup Locations",
-    icon: "ri-map-pin-line",
-    desc: "Tempor tempor sadipscing vero lorem sea, invidunt sed et eos ipsum et erat. Dolor ut duo sadipscing lorem. Gubergren gub",
-  },
-
-  {
-    id: 6,
-    title: "Airport Transfer",
-    icon: "ri-flight-takeoff-line",
-    desc: "Tempor tempor sadipscing vero lorem sea, invidunt sed et eos ipsum et erat. Dolor ut duo sadipscing lorem. Gubergren gub",
-  },
+  
 ];
 
 export default serviceData;
