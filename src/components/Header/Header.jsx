@@ -1,46 +1,50 @@
 import React, { useRef, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink,  } from "react-router-dom";
 import "../../styles/header.css";
-import Login from "./Login";
-import Register from "./Register"; // Import the Register component
+ 
+import Login from "../../pages/Login";
+import Register from "../../pages/Register";
+import PublishRidePage from "../../pages/PublishRide";
+
 
 const navLinks = [
   {
     path: "/home",
     display: "Home",
   },
+  
   {
     path: "/about",
     display: "About",
   },
-  {
-    path: "/cars",
-    display: "Cars",
-  },
+
   {
     path: "/contact",
     display: "Contact",
+  },
+  {
+    path: "/Login",
+    display: "Login",
+  },
+  {
+    path: "/Register",
+    display: "Register",
+  },
+  {
+    path: "/PublishRidePage",
+    display: "Publish Ride",
   },
 ];
 
 const Header = () => {
   const menuRef = useRef(null);
-  const [isLoginOpen, setLoginOpen] = useState(false);
-  const [isRegisterOpen, setRegisterOpen] = useState(false); // State variable for the register component
+  const [isLoginOpen, ] = useState(false);
+  const [isRegisterOpen] = useState(false); // State variable for the register component
 
   const toggleMenu = () => menuRef.current.classList.toggle("menu__active");
 
-  const handleLoginClick = () => {
-    setLoginOpen(!isLoginOpen);
-    setRegisterOpen(false); // Close the register component when opening the login component
-  };
-
-  const handleRegisterClick = () => {
-    setRegisterOpen(!isRegisterOpen);
-    setLoginOpen(false); // Close the login component when opening the register component
-  };
-
+  
   return (
     <header className="header">
       {/* ============ header top ============ */}
@@ -58,12 +62,7 @@ const Header = () => {
 
             <Col lg="6" md="6" sm="6">
               <div className="header__top__right d-flex align-items-center justify-content-end gap-3">
-                <button className="Login" onClick={handleLoginClick}>
-                  <i className="ri-login-circle-line"></i> Login
-                </button>
-                <button className="Register" onClick={handleRegisterClick}>
-                  <i className="ri-user-line"></i> Sign up!
-                </button>
+              <marquee width="800">🚙`welcome to Hitchify.Apka anpa carpool.`  </marquee>
               </div>
             </Col>
           </Row>
@@ -86,7 +85,6 @@ const Header = () => {
                 </h1>
               </div>
             </Col>
-
             <Col lg="3" md="3" sm="4">
               <div className="header__location d-flex align-items-center gap-2">
                 <span>

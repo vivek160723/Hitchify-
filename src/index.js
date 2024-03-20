@@ -6,18 +6,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "remixicon/fonts/remixicon.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import Login from "./components/UI/LLogin";
-
 import { BrowserRouter as Router } from "react-router-dom";
-// import PublishRide from "./pages/publishride";
+// import PublishRidePage from "./pages/PublishRide";
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router> 
       <App />
-      {/* <Login/> */}
-     </Router>
+      {/* <PublishRidePage/> */}
+    </Router>
   </React.StrictMode>
-  // <PublishRide/>
 );

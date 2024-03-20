@@ -1,10 +1,17 @@
 import React from "react";
 import "../../styles/become-driver.css";
 import { Container, Row, Col } from "reactstrap";
+import { useNavigate } from "react-router-dom"; // Import useNavigate from React Router
 
 import driverImg from "../../assets/all-images/toyota-offer-2.png";
 
 const BecomeDriverSection = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handlePublishRide = () => {
+    navigate("/PublishRidePage"); // Navigate to "PublishRidePage" when the button is clicked
+  };
+
   return (
     <section className="become__driver">
       <Container>
@@ -18,9 +25,10 @@ const BecomeDriverSection = () => {
               Do You Want to Earn With Us? So Don't Be Late
             </h2>
 
-            <button className="btn become__driver-btn mt-4">
-              Publish a ride now
-            </button>
+            <button className="publish-ride-button">
+  Publish a ride now
+</button>
+
           </Col>
         </Row>
       </Container>

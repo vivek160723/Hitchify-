@@ -1,9 +1,24 @@
+/* ============ header top style =========== */
 .header__top {
-  padding: 10px 0px;
+  padding: 10px 0;
   background: #000d6b;
   color: #fff;
 }
 
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: marquee 500s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 .header__top__left {
   display: flex;
   align-items: center;
@@ -28,20 +43,23 @@
   font-size: 0.7rem;
 }
 
-.header__top__right a {
-  text-decoration: none;
+.header__top__right button {
+  background: #007bff;
   color: #fff;
-  font-size: 0.9rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.header__top__right a:hover {
-  color: #fff;
+.header__top__right button:hover {
+  background-color: #0056b3;
 }
 
 /* ============ header middle style =========== */
-
 .header__middle {
-  padding: 20px 0px;
+  padding: 20px 0;
 }
 
 .logo h1 a span {
@@ -96,13 +114,14 @@
 }
 
 .header__btn a:hover {
-  color: #fff;
+  color: #ffffff;
+  height: auto;
+  width: auto;
 }
 
 /* ================ main navbar styles =========== */
-
 .main__navbar {
-  padding: 15px 0px;
+  padding: 15px 0;
   background: #000d6b;
 }
 
@@ -152,6 +171,7 @@
 .search__box input::placeholder {
   font-size: 0.8rem;
 }
+
 .search__box span i {
   color: rgba(255, 255, 255, 0.555);
   cursor: pointer;
@@ -173,7 +193,7 @@
   }
 
   .navigation {
-    background: rgb(0, 13, 107, 0.6);
+    background: rgba(0, 13, 107, 0.6);
     width: 100%;
     height: 100%;
     position: fixed;
