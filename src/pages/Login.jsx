@@ -5,7 +5,7 @@ const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [showPopup, setShowPopup] = useState(false);
-  const [userType, setUserType] = useState('');
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -16,15 +16,16 @@ const Login = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:3004/auth/login', data, {
+      const response = await axios.post(process.env.REACT_APP_LOGIN_URL, data, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
 
       if (response.status === 200) {
-        setUserType(response.data.userType);
+        
         setShowPopup(true);
+        
       } else {
         console.error('Login failed:', response.data);
         alert('Login failed. Please check your credentials and try again.');
@@ -81,7 +82,6 @@ const Login = () => {
       {showPopup && (
         <div className="popup">
           <p>Successfully logged in!</p>
-          <p>User Type: {userType}</p>
           <button onClick={() => setShowPopup(false)}>Close</button>
         </div>
       )}
