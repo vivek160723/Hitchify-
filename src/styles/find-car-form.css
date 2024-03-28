@@ -1,3 +1,4 @@
+
 .find__cars-left {
   background: linear-gradient(rgb(249, 168, 38, 0.9), rgb(249, 168, 38, 0.9)),
     url("../assets/all-images/toyota-offer-2.png");
@@ -80,6 +81,48 @@
   border: none;
   outline: none;
 }
+
+.search-bar-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* Styles for the search bar */
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #7c8a972a;
+  outline: none;
+  border-radius: 5px;
+}
+
+/* Styles for the suggestions container */
+.suggestions-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #7c8a972a;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Styles for suggestion items */
+.suggestions-container li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Styles for suggestion items on hover */
+.suggestions-container li:hover {
+  background-color: #f0f0f0;
+}
+
 
 @media only screen and (max-width: 992px) {
   .find__cars-left {

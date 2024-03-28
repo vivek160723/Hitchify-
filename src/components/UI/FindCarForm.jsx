@@ -1,29 +1,44 @@
-import React ,{ useState} from "react";
-import "../../styles/find-car-form.css";
+import React, { useState } from "react";
 import "../../styles/find-car-form.css";
 import { Form, FormGroup } from "reactstrap";
 import FetchSuggestions from '../mapservices/FetchSuggestions';
 import FetchToken from "../mapservices/FetchToken";
 
 
-const FindCarForm = ({ onSelect }) => {
+const FindCarForm = () => {
   const [to, setTo] = useState('');
   const [destination, setDestination] = useState('');
 
   return (
     <Form className="form">
-      <div className=" d-flex align-items-center justify-content-between flex-wrap">
-        <FormGroup className="form__group">
-          <input type="text" onChange={e => setTo(e.target.value)} placeholder="To" required />
+      <div className="d-flex align-items-center justify-content-between flex-wrap">
+        <div className="search-bar-container">
+          <input 
+            type="text" 
+            className="search-bar" 
+            onChange={e => setTo(e.target.value)} 
+            placeholder="Search" 
+            required 
+          />
           {/* Pass token as prop to FetchSuggestions */}
-          <FetchSuggestions query={to} region="IND" token={FetchToken} />
-        </FormGroup>
+          <div className="suggestions-container">
+            <FetchSuggestions query={to} region="IND" token={FetchToken} />
+          </div>
+        </div>
 
-        <FormGroup className="form__group">
-          <input type="text" onChange={e => setDestination(e.target.value)} placeholder="Destination" required />
+        <div className="search-bar-container">
+          <input 
+            type="text" 
+            className="search-bar" 
+            onChange={e => setDestination(e.target.value)} 
+            placeholder="Search" 
+            required 
+          />
           {/* Pass token as prop to FetchSuggestions */}
-          <FetchSuggestions query={destination} region="IND" token={FetchToken} />
-        </FormGroup>
+          <div className="suggestions-container">
+            <FetchSuggestions query={destination} region="IND" token={FetchToken} />
+          </div>
+        </div>
 
         <FormGroup className="form__group">
           <input type="date" placeholder="Journey date" required />
