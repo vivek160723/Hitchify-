@@ -1,9 +1,16 @@
 //FetchSuggestions.js
 import React, { useEffect, useState } from 'react';
-import FetchToken from './FetchToken';
+// import FetchToken from './FetchToken';
 
-const FetchSuggestions = ({ query, region }) => {
+const FetchSuggestions = ({ query, region, onSelect }) => {
   const [suggestions, setSuggestions] = useState(null);
+  const handleSuggestionClick = (suggestion) => {
+    // Handle suggestion click logic here
+    onSelect(suggestion);
+    console.log('Suggestion clicked:', suggestion);
+    // You can perform further actions here such as setting the suggestion in the input field
+  };
+   
 
   useEffect(() => {
     if (query !== "" && query.length > 2) {
@@ -39,18 +46,21 @@ const FetchSuggestions = ({ query, region }) => {
   }, [query, region]); // Add query and region to the dependency array
 
   return (
-    <select className='suggestion-dropdown'>
+    <div className='suggestions-container'>
       {suggestions ? (
-        suggestions.map((suggestion, index) => (
-          <option key={index} value={suggestion.placeName}>
-            {suggestion.placeName}
-          </option>
-        ))
+        <ul>
+          {suggestions.map((suggestion, index) => (
+            <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
+              {suggestion.placeName}
+            </li>
+          ))}
+        </ul>
       ) : (
-        <option value="">--</option>
+        <p>No suggestions</p>
       )}
-    </select>
+    </div>
   );
 };
+
 
 export default FetchSuggestions;
