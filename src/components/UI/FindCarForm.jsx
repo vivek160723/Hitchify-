@@ -3,6 +3,8 @@ import "../../styles/find-car-form.css";
 import { Form, FormGroup } from "reactstrap";
 import FetchSuggestions from '../mapservices/FetchSuggestions';
 // import FetchToken from "../mapservices/FetchToken";
+import AvailableRidesPage from "../../pages/AvailableRidesPage";
+
 
 
 const FindCarForm = () => {
@@ -10,6 +12,7 @@ const FindCarForm = () => {
   const [destination, setDestination] = useState('');
   const [showToSuggestions, setShowToSuggestions] = useState(true);
   const [showDestinationSuggestions, setShowDestinationSuggestions] = useState(true);
+  const [showAvailableRides, setShowAvailableRides] = useState(false);
 
   const handleSuggestionSelect = (selectedSuggestion, field) => {
     if (field === 'to') {
@@ -21,7 +24,17 @@ const FindCarForm = () => {
     }
   };
 
+  const handleFindRide = () => {
+    // Perform any necessary actions before showing AvailableRidesPage
+    setShowAvailableRides(true);
+  };
+
+
+
   return (
+    <>
+      {!showAvailableRides && (
+
     <Form className="form">
       <div className="d-flex align-items-center justify-content-between flex-wrap">
         <div className="search-bar-container">
@@ -68,11 +81,13 @@ const FindCarForm = () => {
         </FormGroup>
 
         <FormGroup className="form__group">
-          <button className="btn find__car-btn">Find Ride</button>
-        </FormGroup>
-      </div>
-    </Form>
-  );
+              <button className="btn find__car-btn" onClick={handleFindRide}>Find Ride</button>
+            </FormGroup>
+          </div>
+        </Form>
+ )}
+ {showAvailableRides && <AvailableRidesPage />} {/* Render AvailableRidesPage component when showAvailableRides is true */}
+</>
+);
 };
-
 export default FindCarForm;

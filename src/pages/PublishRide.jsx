@@ -10,9 +10,51 @@ const PublishRidePage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [carName, setCarName] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Publish the ride with the provided information
+  
+    // Create a data object with the form fields
+    const formData = {
+      startLocation,
+      endLocation,
+      date,
+      time,
+      seatsAvailable,
+      phoneNumber,
+      carName
+    };
+  
+    try {
+      // Make a POST request to your backend API endpoint
+      const response = await fetch('http://localhost:3004/rides/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      // Check if the request was successful
+      if (response.ok) {
+        // Reset the form fields after successful submission
+        setStartLocation('');
+        setEndLocation('');
+        setDate('');
+        setTime('');
+        setSeatsAvailable('');
+        setPhoneNumber('');
+        setCarName('');
+        alert('Ride published successfully!');
+      } else {
+        // Handle error response from the server
+        const errorMessage = await response.text();
+        alert(`Failed to publish ride: ${errorMessage}`);
+      }
+    } catch (error) {
+      // Handle network errors or other exceptions
+      console.error('Error publishing ride:', error);
+      alert('An unexpected error occurred. Please try again later.');
+    }
   };
 
   const handlePhoneNumberChange = (event) => {

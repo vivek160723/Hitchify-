@@ -1,3 +1,4 @@
+//home.jsx
 import React from "react";
 
 import HeroSlider from "../components/UI/HeroSlider";

@@ -8,7 +8,7 @@ const AvailableRidesPage = () => {
   const fetchAvailableRides = async () => {
     try {
       // Fetch data from your API endpoint
-      const response = await fetch('your_api_endpoint_here');
+      const response = await fetch('http://localhost:3004/rides');
       if (!response.ok) {
         throw new Error('Failed to fetch available rides');
       }
