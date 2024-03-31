@@ -32,9 +32,7 @@ const FindCarForm = () => {
 
 
   return (
-    <>
-      {!showAvailableRides && (
-
+    
     <Form className="form">
       <div className="d-flex align-items-center justify-content-between flex-wrap">
         <div className="search-bar-container">
@@ -86,8 +84,5 @@ const FindCarForm = () => {
           </div>
         </Form>
  )}
- {showAvailableRides && <AvailableRidesPage />} {/* Render AvailableRidesPage component when showAvailableRides is true */}
-</>
-);
-};
+ 
 export default FindCarForm;
