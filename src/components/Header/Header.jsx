@@ -1,24 +1,21 @@
 import React, { useRef, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { Link, NavLink,  } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../../styles/header.css";
- 
+import PanicButton from "../PanicButton/PanicButton"; // Import the PanicButton component
 import Login from "../../pages/Login";
 import Register from "../../pages/Register";
 import PublishRidePage from "../../pages/PublishRide";
-
 
 const navLinks = [
   {
     path: "/home",
     display: "Home",
   },
-  
   {
     path: "/about",
     display: "About",
   },
-
   {
     path: "/contact",
     display: "Contact",
@@ -39,15 +36,14 @@ const navLinks = [
 
 const Header = () => {
   const menuRef = useRef(null);
-  const [isLoginOpen, ] = useState(false);
-  const [isRegisterOpen] = useState(false); // State variable for the register component
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
   const toggleMenu = () => menuRef.current.classList.toggle("menu__active");
 
-  
   return (
     <header className="header">
-      {/* ============ header top ============ */}
+      {/* Header Top */}
       <div className="header__top">
         <Container>
           <Row>
@@ -62,14 +58,14 @@ const Header = () => {
 
             <Col lg="6" md="6" sm="6">
               <div className="header__top__right d-flex align-items-center justify-content-end gap-3">
-              <marquee width="800">🚙`welcome to Hitchify.Apka anpa carpool.`  </marquee>
+                <marquee width="800">🚙`welcome to Hitchify.Apka anpa carpool.`  </marquee>
               </div>
             </Col>
           </Row>
         </Container>
       </div>
 
-      {/* =============== header middle =========== */}
+      {/* Header Middle */}
       <div className="header__middle">
         <Container>
           <Row>
@@ -125,8 +121,7 @@ const Header = () => {
         </Container>
       </div>
 
-      {/* ========== main navigation =========== */}
-
+      {/* Main Navigation */}
       <div className="main__navbar">
         <Container>
           <div className="navigation__wrapper d-flex align-items-center justify-content-between">
@@ -149,19 +144,13 @@ const Header = () => {
                 ))}
               </div>
             </div>
-
             <div className="nav__right">
-              <div className="search__box">
-                <input type="text" placeholder="Search" />
-                <span>
-                  <i className="ri-search-line"></i>
-                </span>
-              </div>
+              <PanicButton />
             </div>
           </div>
         </Container>
       </div>
-      
+
       {/* Render the Login and Register components conditionally */}
       {isLoginOpen && <Login />}
       {isRegisterOpen && <Register />}

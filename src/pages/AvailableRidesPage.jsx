@@ -27,70 +27,60 @@ const AvailableRidesPage = () => {
 
   return (
     <div>
-      <h2>Available Rides</h2>
-      {availableRides.length > 0 ? (
-        <ul>
-          {availableRides.map((ride) => (
-            <li key={ride.id}>
-              <h3>{ride.origin} to {ride.destination}</h3>
-              <p>Departure Time: {ride.departureTime}</p>
-              <p>Available Seats: {ride.availableSeats}</p>
-              <button>Book Ride</button>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No available rides found</p>
-      )}
-      <style jsx>{`
-        div {
-          margin: 20px;
-        }
-
-        h2 {
-          color: #333;
-          font-size: 24px;
-          margin-bottom: 10px;
-        }
-
-        ul {
-          list-style-type: none;
-          padding: 0;
-        }
-
-        li {
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          padding: 10px;
-          margin-bottom: 10px;
-        }
-
-        h3 {
-          color: #007bff;
-          font-size: 18px;
-          margin-bottom: 5px;
-        }
-
-        p {
-          margin: 5px 0;
-        }
-
-        button {
-          background-color: #007bff;
-          color: #fff;
-          border: none;
-          border-radius: 5px;
-          padding: 8px 16px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-          background-color: #0056b3;
-        }
-      `}</style>
-    </div>
-  );
+    <h2>Available Rides</h2>
+    {availableRides.length > 0 ? (
+      <div className="rides-grid">
+        {availableRides.map((ride) => (
+          <div key={ride._id} className="ride-container">
+            <h3>{ride.startLocation} to {ride.endLocation}</h3>
+            <p>Date: {ride.date}</p>
+            <p>Time: {ride.time}</p>
+            <p>Available Seats: {ride.seatsAvailable}</p>
+            {/* <p>Phone Number: {ride.phoneNumber}</p> */}
+            <p>Car Name: {ride.carName}</p>
+            <button>Book Ride</button>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p>No available rides found</p>
+    )}
+    <style jsx>{`
+      .rides-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      
+      .ride-container {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+      }
+      
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      
+      button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      
+      button:hover {
+        background-color: #3e8e41;
+      }
+    `}</style>
+  </div>
+);
 };
 
 export default AvailableRidesPage;

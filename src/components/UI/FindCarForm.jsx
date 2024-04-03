@@ -3,6 +3,7 @@ import "../../styles/find-car-form.css";
 import { Form, FormGroup } from "reactstrap";
 import FetchSuggestions from '../mapservices/FetchSuggestions';
 // import FetchToken from "../mapservices/FetchToken";
+import { useNavigate } from "react-router-dom"; 
 import AvailableRidesPage from "../../pages/AvailableRidesPage";
 
 
@@ -11,8 +12,10 @@ const FindCarForm = () => {
   const [to, setTo] = useState('');
   const [destination, setDestination] = useState('');
   const [showToSuggestions, setShowToSuggestions] = useState(true);
+  const [date, setDate] = useState(''); // Add state for date
+  const [time, setTime] = useState(''); // Add state for time
   const [showDestinationSuggestions, setShowDestinationSuggestions] = useState(true);
-  const [showAvailableRides, setShowAvailableRides] = useState(false);
+  const navigate = useNavigate();
 
   const handleSuggestionSelect = (selectedSuggestion, field) => {
     if (field === 'to') {
@@ -26,7 +29,11 @@ const FindCarForm = () => {
 
   const handleFindRide = () => {
     // Perform any necessary actions before showing AvailableRidesPage
-    setShowAvailableRides(true);
+    if (!to || !destination || !date || !time) {
+      // If any of the fields are empty, return without navigating
+      return;
+    }
+    navigate('/available-rides');
   };
 
 
@@ -66,7 +73,13 @@ const FindCarForm = () => {
         </div>
         {/* Remaining form elements... */}
         <FormGroup className="form__group">
-          <input type="date" placeholder="Journey date" required />
+          <input 
+            type="date" 
+            placeholder="Journey date" 
+            value={date} 
+            onChange={e => setDate(e.target.value)} 
+            required 
+          />
         </FormGroup>
 
         <FormGroup className="form__group">
@@ -74,15 +87,17 @@ const FindCarForm = () => {
             className="journey__time"
             type="time"
             placeholder="Journey time"
+            value={time}
+            onChange={e => setTime(e.target.value)}
             required
           />
         </FormGroup>
 
         <FormGroup className="form__group">
-              <button className="btn find__car-btn" onClick={handleFindRide}>Find Ride</button>
-            </FormGroup>
-          </div>
-        </Form>
- )}
- 
+          <button className="btn find__car-btn" onClick={handleFindRide}>Find Ride</button>
+        </FormGroup>
+      </div>
+    </Form>
+  );
+};
 export default FindCarForm;

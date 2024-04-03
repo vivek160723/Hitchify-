@@ -1,5 +1,6 @@
 //register.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
 
 const Register = () => {
@@ -9,6 +10,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordMatchError, setPasswordMatchError] = useState(false);
+  const navigate = useNavigate();
 
   const handlePhoneNumberChange = (e) => {
     const regex = /^[0-9]*$/;
@@ -59,6 +61,7 @@ const Register = () => {
       // Handle the response from the server
       if (response.status === 201) {
         alert('Successfully registered! Now go back to the home page and login.');
+        navigate('/login');
       } else {
         console.error('Registration failed:', response.data);
         alert('Registration failed. Please check your inputs and try again.');
