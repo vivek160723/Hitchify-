@@ -22,22 +22,32 @@ const navLinks = [
   },
   {
     path: "/Login",
-    display: "Login",
+    display: "Login"
   },
   {
     path: "/Register",
     display: "Register",
   },
   {
-    path: "/PublishRidePage",
-    display: "Publish Ride",
+    path: "/DriverPanel",
+    display: "Driver Section",
   },
 ];
+
+ 
+
 
 const Header = () => {
   const menuRef = useRef(null);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+  
+  const toggleLogout = () => {
+    localStorage.removeItem("userId");
+    localStorage.removeItem("username");
+    setIsLogoutOpen(!isLogoutOpen); // Toggle logout dropdown
+  }
 
   const toggleMenu = () => menuRef.current.classList.toggle("menu__active");
 
@@ -139,12 +149,21 @@ const Header = () => {
                     }
                     key={index}
                   >
-                    {item.display}
+                    {(item.display !== "Login" || !localStorage.getItem("userId")) ? item.display : null}
                   </NavLink>
                 ))}
               </div>
             </div>
-            <div className="nav__right">
+           {/* Logout Dropdown */}
+           <div className="nav__right">
+              <div className="nav__item" onClick={toggleLogout}>
+                {localStorage.getItem("username") ? `Hey ${localStorage.getItem("username")}, Logout`: ""}
+                {isLogoutOpen && (
+                  <div className="logout__dropdown">
+                    {/* Dropdown Content */}
+                  </div>
+                )}
+              </div>
               <PanicButton />
             </div>
           </div>

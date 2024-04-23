@@ -96,7 +96,7 @@ const Register = () => {
               id="fullName"
               value={fullName}
               onChange={(e) => setFullName(e.target.value.replace(/[^a-zA-Z ]/g, ''))}
-              placeholder="Enter your full name"
+              placeholder="Full Name"
               required
             />
           </div>
@@ -107,7 +107,7 @@ const Register = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email address"
+              placeholder="Email"
               required
             />
           </div>
@@ -118,7 +118,7 @@ const Register = () => {
               id="phoneNumber"
               value={phoneNumber}
               onChange={handlePhoneNumberChange}
-              placeholder="Enter your phone number"
+              placeholder="Phone Number"
               required
             />
           </div>
@@ -129,7 +129,7 @@ const Register = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
+              placeholder="Password"
               required
             />
           </div>
@@ -140,7 +140,7 @@ const Register = () => {
               id="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm your password"
+              placeholder="Confirm Password"
               required
             />
             {passwordMatchError && <p className="error-text">Passwords do not match.</p>}
@@ -175,7 +175,7 @@ const Register = () => {
           margin-bottom: 20px;
         }
 
-        label {
+          label {
           display: block;
           margin-bottom: 5px;
         }

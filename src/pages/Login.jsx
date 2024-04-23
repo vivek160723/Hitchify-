@@ -1,12 +1,16 @@
 //login.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+
 
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [showPopup, setShowPopup] = useState(false);
-  
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -24,9 +28,14 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        
-        setShowPopup(true);
-        
+        const { userId, username } = response.data;
+        console.log("userId", userId);
+        localStorage.setItem('userId', userId); // Store userId in local storage
+        localStorage.setItem('username', username); // Store username in local storage
+        console.log("localStorage.getItem('userId')", localStorage.getItem("userId"));
+        console.log("localStorage.getItem('username')", localStorage.getItem("username"));
+       alert("login succesfully" +userId);
+        navigate('/', { state: { userId, username } });
       } else {
         console.error('Login failed:', response.data);
         alert('Login failed. Please check your credentials and try again.');
@@ -60,7 +69,7 @@ const Login = () => {
               id="phone"
               value={phoneNumber}
               onChange={handlePhoneNumberChange}
-              placeholder="Enter your phone number"
+              placeholder="Phone Number"
               pattern="[0-9]{10}" // Restrict input to 10 digits
               title="Please enter a 10-digit phone number" // Hint for users
               required
@@ -73,7 +82,7 @@ const Login = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
+              placeholder="Password"
               required
             />
           </div>

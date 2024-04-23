@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/PublishRidePage.css';
 
-const PublishRidePage = () => {
+const PublishRidePage = ({userName}) => {
   const [startLocation, setStartLocation] = useState('');
   const [endLocation, setEndLocation] = useState('');
   const [date, setDate] = useState('');
@@ -9,10 +9,15 @@ const PublishRidePage = () => {
   const [seatsAvailable, setSeatsAvailable] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [carName, setCarName] = useState('');
+  const [price, setPrice] = useState('');
 
+  const userId = localStorage.getItem('userId'); 
+  console.log(userId);
   const handleSubmit = async (event) => {
     event.preventDefault();
   
+    // Retrieve userId from localStorage
+   
     // Create a data object with the form fields
     const formData = {
       startLocation,
@@ -21,7 +26,9 @@ const PublishRidePage = () => {
       time,
       seatsAvailable,
       phoneNumber,
-      carName
+      carName,
+      price,
+      userId // Include userId in formData
     };
   
     try {
@@ -44,6 +51,9 @@ const PublishRidePage = () => {
         setSeatsAvailable('');
         setPhoneNumber('');
         setCarName('');
+        setPrice('');
+        
+        // alert('userId: ', userId);
         alert('Ride published successfully!');
       } else {
         // Handle error response from the server
@@ -68,6 +78,7 @@ const PublishRidePage = () => {
     <div className="publish-ride-page">
       <div className="publish-ride-form">
         <h1>Publish Ride</h1>
+        <h2>Welcome,{localStorage.getItem('username')}!</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="start-location">Start Location:</label>
@@ -97,18 +108,15 @@ const PublishRidePage = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="time">Time:</label>
-            <select
-              id="time"
+            <label htmlFor="journey-time">Journey Time:</label>
+            <input
+              className="journey__time"
+              type="time"
+              placeholder="Journey time"
               value={time}
-              onChange={(event) => setTime(event.target.value)}
-            >
-              <option value="">-- Select Time --</option>
-              <option value="12:00 AM">12:00 AM</option>
-              <option value="12:30 AM">12:30 AM</option>
-              <option value="1:00 PM">1:00 PM</option>
-              {/* Add other time options */}
-            </select>
+              onChange={e => setTime(e.target.value)}
+              required
+            />
           </div>
           <div className="form-group">
             <label htmlFor="seats-available">Seats Available:</label>
@@ -126,11 +134,11 @@ const PublishRidePage = () => {
               id="phone-number"
               value={phoneNumber}
               onChange={handlePhoneNumberChange}
-              placeholder="Enter Phone Number (Max 10 digits)"
+              placeholder="Enter Phone Number"
             />
           </div>
           <div className="form-group">
-            <label htmlFor="car-name">Car Name:</label>
+          <label htmlFor="car-name">Car Name:</label>
             <input
               type="text"
               id="car-name"
@@ -138,7 +146,18 @@ const PublishRidePage = () => {
               onChange={(event) => setCarName(event.target.value)}
             />
           </div>
-          <button type="submit" className="publish-ride-button">Publish Ride</button>
+          <div className="form-group">
+            <label htmlFor="price">Price:</label>
+            <input
+              type="text"
+              id="price"
+              value={price}
+              onChange={(event) => setPrice(event.target.value)}
+            />
+          </div>
+          <button type="submit" className="publish-ride-button">
+            Publish Ride
+          </button>
         </form>
       </div>
     </div>

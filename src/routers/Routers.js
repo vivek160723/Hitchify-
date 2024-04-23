@@ -9,6 +9,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PublishRidePage from "../pages/PublishRide";
 import AvailableRidesPage from "../pages/AvailableRidesPage";
+import PaymentMethod from "../components/UI/PaymentMethod";
+import DriverPanel from "../pages/driversection";
 
 
 const Routers = () => {
@@ -23,6 +25,9 @@ const Routers = () => {
       <Route path="/Register" element={<Register />} />
     
       <Route path="/PublishRidePage" element={<PublishRidePage />} />
+      <Route path="/driverpanel" element={<DriverPanel/>} />
+      <Route path="/payment-method" element={<PaymentMethod />} />
+      <Route path="/publish-ride" element={<PublishRidePage/>} />
       <Route path="/available-rides" element={<AvailableRidesPage />} />
       {/* <Route path="*" element={<NotFound />} /> */}
     </Routes>
