@@ -1,37 +1,59 @@
 import React, { useState } from "react";
-import { useLocation } from 'react-router-dom';
-import masterCard from "../../assets/all-images/master-card.jpg";
-import paypal from "../../assets/all-images/paypal.jpg";
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import RideDetails from './bookedRide';
 
 const PaymentMethod = () => {
   const [selectedOption, setSelectedOption] = useState(null);
-
-    // Get the ride data from the location state
-    const location = useLocation();
-    const {ride} = location.state;
-    console.log(ride);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { ride } = location.state;
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
   };
 
-  const handleReserveClick = () => {
-    // Logic to handle reservation
-    console.log("Reserved with:", selectedOption);
-    console.log("Ride data:", ride);
+  const handleReserveClick = async (event) => {
+    event.preventDefault(); 
+    try {
+      if (!selectedOption) {
+        window.alert("Please select a payment method.");
+        return;
+      }
+      
+      // Log the rideId before making the axios request
+      console.log("Ride ID:", ride._id);
+  
+      const response = await axios.post('http://localhost:3004/rides/book', {
+        rideId: ride._id,
+        paymentMethod: selectedOption
+      });
+      
+      if (response.status === 201) {
+        window.alert("Ride booked successfully!");
+        console.log("Ride object:", ride);
+        console.log("irde id in payment ", ride._Id);
+        navigate('/ride-details', { state: { rideId: ride._id } }); // Pass rideId instead of ride._Id
+      } else {
+        window.alert("Failed to book ride. Please try again later.");
+      }
+      
+    } catch (error) {
+      console.error('Error booking ride:', error.response ? error.response.data : error.message);
+      window.alert("Failed to book ride. Please try again later.");
+    }
   };
 
   return (
     <div className="containerbox">
-      <div className="container"></div>
       <div className="payment-gateway">
-      <div className="ride-details">
-      <h3>Ride Details</h3>
-      <p><strong>Start Location:</strong> {ride.startLocation}</p>
-      <p><strong>End Location:</strong> {ride.endLocation}</p>
-      <p><strong>Price:</strong> {ride.price}</p>
-      <p><strong>Car Name:</strong> {ride.carName}</p>
-    </div>
+        <div className="ride-details">
+          <h3>Ride Details</h3>
+          <p><strong>Start Location:</strong> {ride.startLocation}</p>
+          <p><strong>End Location:</strong> {ride.endLocation}</p>
+          <p><strong>Price:</strong> {ride.price}</p>
+          <p><strong>Car Name:</strong> {ride.carName}</p>
+        </div>
         <div className="payment-option">
           <input
             type="radio"
@@ -41,7 +63,7 @@ const PaymentMethod = () => {
             checked={selectedOption === "UPI Payment"}
             onChange={handleOptionChange}
           />
-          <label htmlFor="cheque">UPI Payment</label>
+          <label htmlFor="upi">UPI Payment</label>
         </div>
 
         <div className="payment-option">
@@ -49,38 +71,31 @@ const PaymentMethod = () => {
             type="radio"
             id="masterCard"
             name="paymentOption"
-            value="Master Card"
-            checked={selectedOption === "Master Card"}
+            value="Debit/Credit Card"
+            checked={selectedOption === "Debit/Credit Card"}
             onChange={handleOptionChange}
           />
-          <label htmlFor="masterCard">
-            Debit/Credit Card
-            {/* <img src={masterCard} alt="Master Card" /> */}
-          </label>
+          <label htmlFor="masterCard">Debit/Credit Card</label>
         </div>
 
         <div className="payment-option">
           <input
             type="radio"
-            id="paypal"
+            id="cash"
             name="paymentOption"
-            value="Paypal"
-            checked={selectedOption === "Paypal"}
+            value="Cash"
+            checked={selectedOption === "Cash"}
             onChange={handleOptionChange}
           />
-          <label htmlFor="paypal">
-            Cash
-            {/* <img src={paypal} alt="Paypal" /> */}
-          </label>
+          <label htmlFor="cash">Cash</label>
         </div>
       </div>
 
       <div className="reserve-button">
-        <button onClick={handleReserveClick} disabled={!selectedOption}>
-          Pay Now
+        <button onClick={(event)=>handleReserveClick(event)} disabled={!selectedOption}>
+          Confirm
         </button>
       </div>
-
       <style jsx>{`
 
 .containerbox {
